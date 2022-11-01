@@ -1,16 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:plastofree/constant/globalvariables.dart';
+
+import 'package:plastofree/constant/GlobalVariables.dart';
+import 'package:plastofree/features/auth/services/authservice.dart';
+import 'package:plastofree/providers/user_provider.dart';
 import 'package:plastofree/router.dart';
-
-
+import 'package:plastofree/widgets/bottom_bar.dart';
+import 'package:provider/provider.dart';
 import 'features/auth/screens/auth_screen.dart';
 
 void main(){
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => UserProvider())
+
+  ],child: const MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final AuthService authService = AuthService();
+
+  @override
+  void initState() {
+    super.initState();
+    authService.getUserData(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +50,9 @@ class MyApp extends StatelessWidget {
         )
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
-      home: const AuthScreen(),
+      home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? const BottomBar()
+          : const AuthScreen(),
     );
   }
 }
