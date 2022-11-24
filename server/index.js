@@ -1,5 +1,7 @@
 const express = require ("express");
 const mongoose = require("mongoose");
+const adminRouter = require("./routes/admin");
+const productRouter = require ("./routes/product");
 const authRouter = require ("./routes/auth");
 
 //init
@@ -9,6 +11,8 @@ const app = express();
 const DB = "mongodb+srv://mayuresh:spnpiDmbHHSARx74@cluster0.iudshl1.mongodb.net/?retryWrites=true&w=majority";
 app.use(express.json());
 app.use(authRouter);
+app.use(adminRouter);
+app.use(productRouter);
 
 //connections
 mongoose.

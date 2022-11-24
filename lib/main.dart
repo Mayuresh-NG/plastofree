@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:plastofree/constant/GlobalVariables.dart';
+import 'package:plastofree/features/admin/screen/admin_screen.dart';
 import 'package:plastofree/features/auth/services/authservice.dart';
 import 'package:plastofree/providers/user_provider.dart';
 import 'package:plastofree/router.dart';
@@ -51,7 +52,9 @@ class _MyAppState extends State<MyApp> {
       ),
       onGenerateRoute: (settings) => generateRoute(settings),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
+          ? Provider.of<UserProvider>(context).user.type == 'user'
           ? const BottomBar()
+          : const AdminScreen()
           : const AuthScreen(),
     );
   }
