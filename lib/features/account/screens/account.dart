@@ -25,7 +25,7 @@ class AccountScreen extends StatelessWidget {
               Container(
                 alignment: Alignment.topLeft,
                 child: Image.asset(
-                  'images/PLASTO.png',
+                  'images/logo1.png',
                   width: 120,
                   height: 45,
 

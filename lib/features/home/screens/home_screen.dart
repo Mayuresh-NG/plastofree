@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:plastofree/constant/GlobalVariables.dart';
 import 'package:plastofree/features/home/widgets/address_box.dart';
 import 'package:plastofree/features/home/widgets/caraousel_image.dart';
+import '../../search/screen/search_screen.dart';
+import '../widgets/DOD.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "/home";
@@ -12,6 +14,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  void navigateToSearchScreen(String query){
+    Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(7),
                     elevation: 1,
                     child: TextFormField(
+                      onFieldSubmitted: navigateToSearchScreen,
                       decoration: InputDecoration(
                         prefixIcon: InkWell(
                         onTap: () {},
@@ -68,10 +74,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: const [
             AddressBox(),
-            SizedBox(height: 10,width:4500,child: DecoratedBox(decoration: BoxDecoration(color: Colors.white)),),
+            SizedBox(height: 5,width:4500,child: DecoratedBox(decoration: BoxDecoration(color: Colors.white)),),
             CarouselImage(),
-            SizedBox(height: 10,width:4500,child: DecoratedBox(decoration: BoxDecoration(color: Colors.white)),),
-
+            SizedBox(height: 5,width:4500,child: DecoratedBox(decoration: BoxDecoration(color: Colors.white)),),
+            DOD(),
+            // DealOfDay(),
           ],
         ),
       ),
