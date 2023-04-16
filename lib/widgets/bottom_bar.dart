@@ -5,7 +5,6 @@ import 'package:plastofree/features/account/screens/account.dart';
 import 'package:plastofree/features/home/screens/home_screen.dart';
 import 'package:plastofree/features/categories/screen/top_categories.dart';
 //import 'package:provider/provider.dart';
-
 //import '../providers/user_provider.dart';
 
 class BottomBar extends StatefulWidget {
@@ -91,14 +90,9 @@ class _BottomBarState extends State<BottomBar> {
           // CART
           BottomNavigationBarItem(
             icon: Container(
-              child: Badge(
-                elevation: 10,
-                badgeContent: const Text('2',style:TextStyle(color: Colors.white)),//userCartLen.toString()),
-                badgeColor: globalvariables.secondaryColor,
                 child: const Icon(
                   Icons.shopping_cart_outlined,
                 ),
-              ),
             ),
             label: 'Cart',
           ),
